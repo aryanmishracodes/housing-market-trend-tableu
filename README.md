@@ -4,7 +4,7 @@ A full-stack Flask web application for visualizing housing market trends using e
 
 ---
 
-## 🚀 Quick Setup
+## 🚀 Quick Setup 
 
 ### 1. Prerequisites
 - Python 3.8+
