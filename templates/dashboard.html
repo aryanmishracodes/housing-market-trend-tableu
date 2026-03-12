@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — HousingViz{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="hero-bg min-h-[45vh] flex items-end pb-12 pt-32 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div id="particles-dash" class="absolute inset-0 z-0"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="section-badge">
+      <i class="fa fa-gauge-high text-xs"></i>
+      Analytics Dashboard
+    </div>
+    <h1 class="section-title">Housing Market Dashboard</h1>
+    <p class="section-subtitle">Comprehensive overview of housing market analytics — all insights unified in one interactive Tableau dashboard.</p>
+  </div>
+</section>
+
+<!-- DASHBOARD SECTION -->
+<section class="py-20 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Key Metrics Row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-12">
+      {% set kpis = [
+        ('fa-house-circle-check','21,613','Properties Analyzed','Records in dataset'),
+        ('fa-dollar-sign','$540K','Median Sale Price','Across all records'),
+        ('fa-screwdriver-wrench','40%','Renovated','Homes with updates'),
+        ('fa-expand-arrows-alt','1,117','Avg Basement','Square feet'),
+      ] %}
+      {% for icon, val, label, sub in kpis %}
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30 shrink-0">
+            <i class="fa {{ icon }} text-accent text-sm"></i>
+          </div>
+        </div>
+        <div class="font-poppins font-bold text-white text-2xl mb-1">{{ val }}</div>
+        <div class="text-gray-300 text-sm font-medium">{{ label }}</div>
+        <div class="text-gray-500 text-xs mt-1">{{ sub }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- MAIN DASHBOARD EMBED -->
+    <div class="rounded-2xl border border-accent/20 overflow-hidden bg-secondary-bg shadow-[0_0_60px_rgba(0,245,212,0.08)]" data-aos="fade-up">
+      <div class="px-7 py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5">
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <div class="w-2 h-2 rounded-full bg-accent shadow-[0_0_6px_#00F5D4]"></div>
+            <div class="w-2 h-2 rounded-full bg-primary/60 rounded-full"></div>
+            <div class="w-2 h-2 rounded-full bg-white/20 rounded-full"></div>
+          </div>
+          <h2 class="font-poppins font-bold text-white text-xl">Housing Market Analysis Dashboard</h2>
+          <p class="text-gray-400 text-sm mt-0.5">Unified view combining all four worksheet analyses — price, renovation, area, and trends.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="tech-badge">
+            <i class="fa fa-chart-pie text-xs"></i>
+            Tableau Public
+          </span>
+          <a href="https://public.tableau.com/views/DashBoard_17732448725210/Dashboard1" target="_blank" class="btn-primary text-sm py-2.5 px-5">
+            <i class="fa fa-external-link-alt text-xs"></i>
+            Open Full Screen
+          </a>
+        </div>
+      </div>
+
+      <div class="p-6">
+        <div class="tableau-container" style="border:none;border-radius:12px;overflow:hidden;">
+          <iframe
+            src="https://public.tableau.com/views/DashBoard_17732448725210/Dashboard1?:embed=y&:showVizHome=no"
+            width="1200" height="900" frameborder="0" allowfullscreen
+            style="width:100%;height:700px;border:none;">
+          </iframe>
+        </div>
+        <div class="mt-4 flex flex-wrap items-center justify-between gap-4 text-xs text-gray-500">
+          <div class="flex items-center gap-1.5">
+            <i class="fa fa-circle-info text-primary"></i>
+            <span>Use filters within the dashboard to explore data by bedroom count, renovation status, and more.</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1"><i class="fa fa-hand-pointer text-accent/60"></i> Hover for tooltips</span>
+            <span class="flex items-center gap-1"><i class="fa fa-filter text-primary/60"></i> Click to filter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USAGE GUIDE -->
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      {% set tips = [
+        ('fa-hand-pointer','Interactive Filtering','Click on any chart element to cross-filter all other views in the dashboard simultaneously.'),
+        ('fa-magnifying-glass-plus','Drill Down','Hover over data points to see detailed tooltips with exact values and context.'),
+        ('fa-expand','Full Screen Mode','Use the full screen button for an immersive data exploration experience.'),
+      ] %}
+      {% for icon, title, desc in tips %}
+      <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center mb-4 border border-primary/30">
+          <i class="fa {{ icon }} text-accent text-sm"></i>
+        </div>
+        <h3 class="font-poppins font-semibold text-white mb-2">{{ title }}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- NAV TO STORY -->
+<section class="py-16 bg-secondary-bg">
+  <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+    <h2 class="font-poppins font-bold text-white text-2xl mb-4">Ready for a guided narrative?</h2>
+    <p class="text-gray-400 mb-8">Explore the full data story — a scene-by-scene walkthrough of the housing market insights.</p>
+    <a href="/story" class="btn-primary">
+      <i class="fa fa-book-open text-sm"></i>
+      View Story Presentation
+    </a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  initParticles('particles-dash');
+</script>
+{% endblock %}

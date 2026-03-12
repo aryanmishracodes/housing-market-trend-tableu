@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block title %}HousingViz — Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-20 grid-bg">
+  <div id="particles-js" class="absolute inset-0 z-0"></div>
+
+  <!-- Floating Real Estate Icons -->
+  <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+    <i class="fa fa-house float-house absolute text-primary/20 text-5xl" style="top:15%;left:8%"></i>
+    <i class="fa fa-building float-house absolute text-accent/15 text-4xl" style="top:60%;left:5%"></i>
+    <i class="fa fa-chart-line float-house absolute text-primary/20 text-3xl" style="top:25%;right:6%"></i>
+    <i class="fa fa-key float-house absolute text-accent/15 text-3xl" style="bottom:20%;right:10%"></i>
+    <i class="fa fa-city float-house absolute text-primary/15 text-6xl" style="top:70%;right:4%"></i>
+    <i class="fa fa-dollar-sign float-house absolute text-accent/10 text-5xl" style="bottom:30%;left:12%"></i>
+    <!-- Decorative circles -->
+    <div class="absolute rounded-full border border-accent/8 w-72 h-72" style="top:-5%;right:15%"></div>
+    <div class="absolute rounded-full border border-primary/10 w-96 h-96" style="bottom:-10%;left:-5%"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- LEFT — TEXT -->
+      <div>
+        <div class="section-badge mb-6">
+          <i class="fa fa-chart-bar text-xs"></i>
+          Data Analytics Platform
+        </div>
+
+        <h1 class="hero-title font-poppins font-black text-white leading-tight mb-6" style="font-size:clamp(36px,5.5vw,68px)">
+          Visualizing<br/>
+          <span class="gradient-text">Housing Market</span><br/>
+          Trends
+        </h1>
+
+        <p class="hero-subtitle text-gray-300 text-lg leading-relaxed mb-10 max-w-xl">
+          Interactive analytics platform exploring housing prices, renovation trends, and property characteristics using advanced data visualization powered by Tableau.
+        </p>
+
+        <div class="hero-btns flex flex-wrap gap-4">
+          <a href="/worksheets" class="btn-primary">
+            <i class="fa fa-chart-bar text-sm"></i>
+            Explore Worksheets
+          </a>
+          <a href="/dashboard" class="btn-outline">
+            <i class="fa fa-gauge-high text-sm"></i>
+            View Dashboard
+          </a>
+          <a href="/story" class="btn-primary" style="background:rgba(0,245,212,0.12);color:var(--accent);border:1.5px solid var(--accent)">
+            <i class="fa fa-book-open text-sm"></i>
+            Data Story
+          </a>
+        </div>
+
+        <!-- MINI STATS -->
+        <div class="mt-12 grid grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="font-poppins font-bold text-2xl text-accent">4+</div>
+            <div class="text-xs text-gray-400 mt-1">Visualizations</div>
+          </div>
+          <div class="text-center border-x border-white/5">
+            <div class="font-poppins font-bold text-2xl text-accent">21K+</div>
+            <div class="text-xs text-gray-400 mt-1">Data Records</div>
+          </div>
+          <div class="text-center">
+            <div class="font-poppins font-bold text-2xl text-accent">7</div>
+            <div class="text-xs text-gray-400 mt-1">Key Features</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — VISUAL CARD -->
+      <div class="hero-visual">
+        <div class="glass-card p-6 relative">
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-sm font-poppins font-semibold text-white">Housing Market Overview</span>
+            <span class="section-badge text-xs py-1 px-3">Live Data</span>
+          </div>
+
+          <!-- Mini chart visual -->
+          <div class="space-y-3 mb-6">
+            {% set bars = [('Avg Sale Price', 72, '$540K'),('Renovation Rate', 58, '58%'),('Basement Coverage', 85, '85%'),('Multi-floor Homes', 45, '45%')] %}
+            {% for label, pct, val in bars %}
+            <div>
+              <div class="flex justify-between text-xs mb-1.5">
+                <span class="text-gray-400">{{ label }}</span>
+                <span class="text-accent font-medium">{{ val }}</span>
+              </div>
+              <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width:{{ pct }}%;background:linear-gradient(90deg,#2A6F97,#00F5D4);box-shadow:0 0 8px rgba(0,245,212,0.3)"></div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Bottom row icons -->
+          <div class="grid grid-cols-4 gap-3">
+            {% set metrics = [('fa-house','Homes','21,613'),('fa-dollar-sign','Avg $','$540K'),('fa-calendar','Years','1900-2015'),('fa-star','Grades','1-13')] %}
+            {% for icon, label, val in metrics %}
+            <div class="text-center p-3 rounded-xl bg-white/3 border border-white/5">
+              <i class="fa {{ icon }} text-accent text-lg mb-2 block"></i>
+              <div class="text-white font-poppins font-bold text-xs">{{ val }}</div>
+              <div class="text-gray-500 text-xs mt-0.5">{{ label }}</div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Glow accent -->
+          <div class="absolute -bottom-2 -right-2 w-24 h-24 rounded-full bg-accent/10 blur-xl pointer-events-none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+    <span class="text-gray-500 text-xs tracking-widest uppercase">Scroll</span>
+    <i class="fa fa-chevron-down text-accent text-sm"></i>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats-section py-20 bg-secondary-bg border-y border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {% set stats = [
+        ('counter-num','21613','fa-database','Housing Records',''),
+        ('counter-num','540','fa-dollar-sign','Avg Sale Price (K)','$'),
+        ('counter-num','1900','fa-calendar','Oldest Property',''),
+        ('counter-num','7','fa-list-check','Features Analyzed','')
+      ] %}
+      {% for cls, val, icon, label, prefix in stats %}
+      <div class="text-center" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+        <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mx-auto mb-4 border border-primary/30">
+          <i class="fa {{ icon }} text-accent"></i>
+        </div>
+        <div class="{{ cls }}" data-target="{{ val }}" data-prefix="{{ prefix }}">{{ prefix }}{{ val }}</div>
+        <div class="text-gray-400 text-sm mt-1 font-inter">{{ label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES PREVIEW -->
+<section class="py-24 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-sparkles text-xs"></i>
+        What We Analyze
+      </div>
+      <h2 class="section-title">Key Housing Features</h2>
+      <p class="section-subtitle mx-auto text-center">Comprehensive analysis of factors that influence housing market values and trends.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% set features = [
+        ('fa-calendar-days','House Age','Analyzing properties built between 1900 and 2015 to understand age-related market trends.','#2A6F97'),
+        ('fa-screwdriver-wrench','Renovation Status','Evaluating how renovation history impacts market value and buyer preferences.','#00F5D4'),
+        ('fa-dollar-sign','Sale Price','Tracking median sale prices across neighborhoods and time periods.','#2A6F97'),
+        ('fa-ruler-combined','Basement Area','Studying basement square footage as a significant factor in property value.','#00F5D4'),
+        ('fa-bed','Bedrooms','Understanding bedroom count distribution across the housing dataset.','#2A6F97'),
+        ('fa-bath','Bathrooms','Correlation analysis between bathroom count and property sale prices.','#00F5D4'),
+      ] %}
+      {% for icon, title, desc, color in features %}
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 3 * 100 }}">
+        <div class="feature-icon">
+          <i class="fa {{ icon }} text-xl" style="color:{{ color }}"></i>
+        </div>
+        <h3 class="font-poppins font-semibold text-white text-lg mb-2">{{ title }}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-10">
+      <a href="/housingfeatures" class="btn-outline">View All Features <i class="fa fa-arrow-right text-sm"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- VISUALIZATION PREVIEW -->
+<section class="py-24 bg-secondary-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right">
+        <div class="section-badge">
+          <i class="fa fa-chart-area text-xs"></i>
+          Tableau Integration
+        </div>
+        <h2 class="section-title">Interactive Tableau Dashboards</h2>
+        <p class="section-subtitle mb-8">Explore dynamic visualizations embedded directly from Tableau Public — featuring worksheets, a full dashboard, and an immersive story presentation.</p>
+        <div class="space-y-4">
+          {% for item, desc in [('4 Interactive Worksheets','Deep dives into individual housing metrics'),('Unified Dashboard','Comprehensive market overview'),('Story Presentation','Narrative-driven data exploration')] %}
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5 shrink-0">
+              <i class="fa fa-check text-accent text-xs"></i>
+            </div>
+            <div>
+              <div class="font-medium text-white text-sm">{{ item }}</div>
+              <div class="text-gray-400 text-xs mt-0.5">{{ desc }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="flex gap-4 mt-8">
+          <a href="/worksheets" class="btn-primary">See Worksheets <i class="fa fa-arrow-right text-sm"></i></a>
+          <a href="/dashboard" class="btn-outline">Dashboard</a>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <div class="glass-card p-6">
+          <div class="section-badge mb-4">
+            <i class="fa fa-eye text-xs"></i>
+            Featured Visualization
+          </div>
+          <div class="tableau-container">
+            <iframe src="https://public.tableau.com/views/DashBoard_17732448725210/Dashboard1?:embed=y&:showVizHome=no"
+              width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p class="text-gray-500 text-xs mt-3 text-center">Housing Market Analysis Dashboard — Tableau Public</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="py-24 bg-dark-bg">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <div data-aos="fade-up">
+      <div class="section-badge mx-auto mb-6">
+        <i class="fa fa-rocket text-xs"></i>
+        Get Started
+      </div>
+      <h2 class="section-title mb-4">Ready to Explore the Data?</h2>
+      <p class="section-subtitle mx-auto mb-10">Dive deep into the housing market analytics. Navigate worksheets, dashboards, and the full data story.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/about" class="btn-primary">About the Project <i class="fa fa-arrow-right text-sm"></i></a>
+        <a href="/insights" class="btn-outline">View Insights</a>
+        <a href="/contact" class="btn-outline">Contact Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  initParticles('particles-js');
+
+  // Animate counters when stats section visible
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCounters(); statObserver.disconnect(); }
+    });
+  }, { threshold: 0.3 });
+  const statsEl = document.querySelector('.stats-section');
+  if (statsEl) statObserver.observe(statsEl);
+</script>
+{% endblock %}

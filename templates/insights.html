@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block title %}Insights — HousingViz{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="hero-bg min-h-[45vh] flex items-end pb-12 pt-32 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="section-badge">
+      <i class="fa fa-lightbulb text-xs"></i>
+      Data Insights
+    </div>
+    <h1 class="section-title">Key Market Insights</h1>
+    <p class="section-subtitle">Actionable findings extracted from the housing dataset through data visualization and analysis.</p>
+  </div>
+</section>
+
+<!-- STATS COUNTERS -->
+<section class="stats-section py-20 bg-secondary-bg border-y border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <div class="section-badge mx-auto mb-4">
+        <i class="fa fa-chart-bar text-xs"></i>
+        At a Glance
+      </div>
+      <h2 class="section-title">The Numbers Tell the Story</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {% set stat_data = [
+        ('21613','','Records','Total housing sales analyzed in dataset'),
+        ('540','$','K Avg Price','Median sale price across all properties'),
+        ('25','','% Price Lift','Average premium for renovated homes'),
+        ('1117','','sqft Basement','Average basement square footage'),
+      ] %}
+      {% for val, prefix, label, desc in stat_data %}
+      <div class="text-center" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+        <div class="counter-num" data-target="{{ val }}" data-prefix="{{ prefix }}">{{ prefix }}{{ val }}</div>
+        <div class="font-poppins font-semibold text-white mt-2">{{ label }}</div>
+        <div class="text-gray-400 text-xs mt-1 leading-snug">{{ desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- MAIN INSIGHTS -->
+<section class="py-24 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-star text-xs"></i>
+        Top Findings
+      </div>
+      <h2 class="section-title">10 Key Insights</h2>
+      <p class="section-subtitle mx-auto text-center">Our most significant findings from the housing market analysis.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      {% set insights = [
+        ('fa-dollar-sign','Price Variation by Features','Average housing prices vary significantly based on property features. Homes with grade 10+ sell at 3–4x the price of grade 5 properties.','#00F5D4','High Impact'),
+        ('fa-screwdriver-wrench','Renovation Premium','Renovated homes demonstrate ~25% higher average sale prices compared to unrenovated properties of similar age and location.','#2A6F97','High Impact'),
+        ('fa-ruler-combined','Basement Area Value','Basement area contributes significantly to total property value — each 100 sqft of finished basement adds approximately $7,500 to market value.','#00F5D4','Medium Impact'),
+        ('fa-calendar-days','Age & Market Value','Older properties (50+ years) show higher variance in pricing. The condition-age interaction is a critical factor in determining final sale price.','#2A6F97','Medium Impact'),
+        ('fa-bed','Bedroom Sweet Spot','Three and four bedroom homes represent the highest transaction volume segment, accounting for over 60% of all sales in the dataset.','#00F5D4','High Impact'),
+        ('fa-bath','Bathroom Count Correlation','Properties with 2.5+ bathrooms show a consistent 15–20% price premium over comparable homes with fewer bathrooms.','#2A6F97','Medium Impact'),
+        ('fa-layer-group','Multi-Floor Premium','Two-story homes command an average 12% price premium over single-story properties with comparable square footage.','#00F5D4','Low Impact'),
+        ('fa-water','Waterfront Effect','Waterfront properties sell for an average 213% premium compared to non-waterfront homes — the single largest price multiplier in the dataset.','#2A6F97','Very High Impact'),
+        ('fa-clock-rotate-left','Recent Sales Trend','Sales volumes peak in spring and summer months, with May–July accounting for over 35% of annual transaction volume.','#00F5D4','Medium Impact'),
+        ('fa-star','Grade as Predictor','The property condition grade is the strongest single predictor of sale price, with R² correlation exceeding 0.67 in regression models.','#2A6F97','Very High Impact'),
+      ] %}
+      {% for icon, title, desc, color, impact in insights %}
+      <div class="insight-card group" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 2 * 100 }}">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300"
+               style="background:{{ color }}12;border-color:{{ color }}30">
+            <i class="fa {{ icon }} text-lg" style="color:{{ color }}"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-poppins font-semibold text-white">{{ title }}</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full shrink-0 ml-2" style="background:{{ color }}15;color:{{ color }};border:1px solid {{ color }}30">
+                {{ impact }}
+              </span>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- VISUAL BREAKDOWN -->
+<section class="py-20 bg-secondary-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-chart-pie text-xs"></i>
+        Data Distribution
+      </div>
+      <h2 class="section-title">Market Breakdown</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Bedroom Distribution -->
+      <div class="glass-card p-6" data-aos="fade-up">
+        <h3 class="font-poppins font-semibold text-white mb-5 flex items-center gap-2">
+          <i class="fa fa-bed text-accent text-sm"></i>
+          Bedroom Distribution
+        </h3>
+        <div class="space-y-3">
+          {% for bedrooms, pct in [('1–2 Beds', 12),('3 Beds', 42),('4 Beds', 31),('5+ Beds', 15)] %}
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-gray-400">{{ bedrooms }}</span>
+              <span class="text-accent font-medium">{{ pct }}%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:{{ pct }}%;background:linear-gradient(90deg,#2A6F97,#00F5D4);transition:width 1.5s ease;"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Price Tiers -->
+      <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="font-poppins font-semibold text-white mb-5 flex items-center gap-2">
+          <i class="fa fa-dollar-sign text-accent text-sm"></i>
+          Price Tier Segments
+        </h3>
+        <div class="space-y-3">
+          {% for tier, pct in [('Under $300K', 22),('$300K–$500K', 35),('$500K–$750K', 28),('Over $750K', 15)] %}
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-gray-400">{{ tier }}</span>
+              <span class="text-accent font-medium">{{ pct }}%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:{{ pct }}%;background:linear-gradient(90deg,#00F5D4,#2A6F97);"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Renovation Status -->
+      <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="font-poppins font-semibold text-white mb-5 flex items-center gap-2">
+          <i class="fa fa-screwdriver-wrench text-accent text-sm"></i>
+          Renovation Status
+        </h3>
+        <div class="space-y-3">
+          {% for status, pct in [('Never Renovated', 58),('Renovated 10+ yrs', 24),('Renovated 5–10 yrs', 12),('Recent (<5 yrs)', 6)] %}
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-gray-400">{{ status }}</span>
+              <span class="text-accent font-medium">{{ pct }}%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:{{ pct }}%;background:linear-gradient(90deg,#2A6F97,#00F5D4);"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-dark-bg">
+  <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+    <h2 class="font-poppins font-bold text-white text-2xl mb-4">Explore These Insights Visually</h2>
+    <p class="text-gray-400 mb-8">The insights above come to life in the interactive Tableau visualizations. Explore worksheets, the unified dashboard, and the data story.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/worksheets" class="btn-primary"><i class="fa fa-chart-bar text-sm"></i> View Worksheets</a>
+      <a href="/dashboard" class="btn-outline">Open Dashboard</a>
+      <a href="/story" class="btn-outline">Data Story</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const statsObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounters(); statsObs.disconnect(); } });
+  }, { threshold: 0.3 });
+  const statsEl = document.querySelector('.stats-section');
+  if (statsEl) statsObs.observe(statsEl);
+</script>
+{% endblock %}

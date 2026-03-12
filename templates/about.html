@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block title %}About — HousingViz{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="hero-bg min-h-[45vh] flex items-end pb-12 pt-32 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-50"></div>
+  <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-accent/3 to-transparent pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="section-badge">
+      <i class="fa fa-info-circle text-xs"></i>
+      About the Project
+    </div>
+    <h1 class="section-title">Project Overview</h1>
+    <p class="section-subtitle">Understanding the methodology, dataset, and technologies behind this housing market analysis.</p>
+  </div>
+</section>
+
+<!-- PROBLEM STATEMENT -->
+<section class="py-20 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right">
+        <div class="section-badge">
+          <i class="fa fa-triangle-exclamation text-xs"></i>
+          Problem Statement
+        </div>
+        <h2 class="section-title">The Challenge</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          The housing market is influenced by a complex web of variables — age of the property, renovation history, basement area, number of bedrooms and bathrooms, floor count, and many more. Making sense of this complexity requires powerful data visualization.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-6">
+          Our project addresses the challenge of extracting meaningful patterns from a large-scale housing dataset containing over 21,000 records. We aim to reveal how these features collectively influence sale prices, renovation trends, and market dynamics.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          {% for label, val in [('Records Analyzed','21,613'),('Features Studied','7+'),('Years Covered','1900–2015'),('Visualizations','4 Sheets + Dashboard')] %}
+          <div class="glass-card p-4 text-center">
+            <div class="font-poppins font-bold text-accent text-xl mb-1">{{ val }}</div>
+            <div class="text-gray-400 text-xs">{{ label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <div class="glass-card p-8">
+          <h3 class="font-poppins font-semibold text-white text-lg mb-6 flex items-center gap-2">
+            <i class="fa fa-bullseye text-accent"></i>
+            Research Objectives
+          </h3>
+          <div class="space-y-5">
+            {% set objectives = [
+              ('Identify Pricing Trends','Understand how property features correlate with sale prices over time.'),
+              ('Renovation Impact','Analyze the effect of renovation history on property market value.'),
+              ('Spatial Analysis','Study how basement area and total square footage affect pricing.'),
+              ('Feature Correlations','Discover relationships between multiple housing characteristics.'),
+              ('Market Insights','Generate actionable insights for buyers, sellers, and analysts.')
+            ] %}
+            {% for title, desc in objectives %}
+            <div class="flex items-start gap-4">
+              <div class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span class="text-accent font-bold text-xs">{{ loop.index }}</span>
+              </div>
+              <div>
+                <div class="font-medium text-white text-sm mb-1">{{ title }}</div>
+                <div class="text-gray-400 text-xs leading-relaxed">{{ desc }}</div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- DATASET OVERVIEW -->
+<section class="py-20 bg-secondary-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-database text-xs"></i>
+        Dataset Overview
+      </div>
+      <h2 class="section-title">The Housing Dataset</h2>
+      <p class="section-subtitle mx-auto text-center">A comprehensive collection of housing sale records with rich feature data.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {% set dataset_cards = [
+        ('fa-table','Dataset Size','21,613 rows of housing transaction records with multiple feature columns per property.'),
+        ('fa-calendar-range','Time Span','Data spans from 1900 to 2015, providing over a century of housing market context.'),
+        ('fa-map-location-dot','Geographic Scope','Regional housing data with detailed property-level information.'),
+        ('fa-list-ol','Feature Count','Includes 21 columns covering price, size, condition, age, and renovation status.'),
+        ('fa-coins','Price Range','Sale prices range from under $100K to over $7M, capturing diverse market segments.'),
+        ('fa-chart-simple','Data Quality','Cleaned and transformed dataset ready for advanced analytics and visualization.'),
+      ] %}
+      {% for icon, title, desc in dataset_cards %}
+      <div class="glass-card p-7" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 3 * 100 }}">
+        <div class="w-11 h-11 rounded-xl bg-primary/20 flex items-center justify-center mb-4 border border-primary/30">
+          <i class="fa {{ icon }} text-accent"></i>
+        </div>
+        <h3 class="font-poppins font-semibold text-white mb-2">{{ title }}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="py-20 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-microchip text-xs"></i>
+        Technologies Used
+      </div>
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-subtitle mx-auto text-center">A modern, production-grade technology stack powering this analytics platform.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+      {% set techs = [
+        ('fa-chart-bar','Tableau','Data Visualization','Tableau Public embeddings for interactive analytics.'),
+        ('fa-python','Python','Backend Language','Core data processing and application logic.'),
+        ('fa-flask','Flask','Web Framework','Lightweight Python web framework for routing.'),
+        ('fa-js','JavaScript','Frontend','GSAP, AOS, Particles.js for animations.'),
+        ('fa-database','Data Analytics','Analysis','Statistical analysis and feature engineering.'),
+      ] %}
+      {% for icon, name, category, desc in techs %}
+      <div class="accent-card p-6 text-center" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center mx-auto mb-4 border border-primary/30">
+          <i class="fa {{ icon }} text-3xl text-accent"></i>
+        </div>
+        <h3 class="font-poppins font-semibold text-white mb-1">{{ name }}</h3>
+        <div class="text-primary text-xs mb-2 font-medium">{{ category }}</div>
+        <p class="text-gray-400 text-xs leading-relaxed">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="py-20 bg-secondary-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-diagram-project text-xs"></i>
+        Project Workflow
+      </div>
+      <h2 class="section-title">How We Built This</h2>
+    </div>
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent/30 to-transparent"></div>
+      <div class="space-y-12">
+        {% set workflow = [
+          ('01','Data Collection','Sourced comprehensive housing sales dataset with 21K+ records.','fa-download','right'),
+          ('02','Data Transformation','Cleaned, normalized, and engineered features for effective analysis.','fa-gear','left'),
+          ('03','Tableau Visualization','Created 4 worksheets, a unified dashboard, and a data story.','fa-chart-pie','right'),
+          ('04','Web Development','Built this Flask-powered platform to showcase the Tableau work.','fa-code','left'),
+          ('05','Publishing & Deployment','Published to Tableau Public and deployed the web application.','fa-rocket','right'),
+        ] %}
+        {% for num, title, desc, icon, side in workflow %}
+        <div class="grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
+          <div class="{% if side == 'left' %}md:order-2{% endif %}">
+            <div class="glass-card p-6 {% if side == 'right' %}md:ml-8{% else %}md:mr-8{% endif %}">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="font-poppins font-black text-accent text-3xl leading-none">{{ num }}</span>
+                <div class="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30">
+                  <i class="fa {{ icon }} text-accent text-sm"></i>
+                </div>
+              </div>
+              <h3 class="font-poppins font-semibold text-white text-lg mb-2">{{ title }}</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+            </div>
+          </div>
+          <div class="hidden md:flex {% if side == 'right' %}justify-start{% else %}justify-end{% endif %} items-center">
+            <div class="w-4 h-4 rounded-full bg-accent border-4 border-dark-bg shadow-[0_0_12px_rgba(0,245,212,0.5)]"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

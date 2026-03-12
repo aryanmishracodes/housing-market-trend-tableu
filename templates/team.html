@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Team — HousingViz{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="hero-bg min-h-[45vh] flex items-end pb-12 pt-32 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="section-badge">
+      <i class="fa fa-users text-xs"></i>
+      Our Team
+    </div>
+    <h1 class="section-title">Meet the Team</h1>
+    <p class="section-subtitle">The passionate data analysts and developers behind the Housing Market Visualization project.</p>
+  </div>
+</section>
+
+<!-- TEAM GRID -->
+<section class="py-24 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-star text-xs"></i>
+        Project Team
+      </div>
+      <h2 class="section-title">The People Behind the Data</h2>
+      <p class="section-subtitle mx-auto text-center">A multidisciplinary team combining expertise in data analytics, visualization, and web development.</p>
+    </div>
+
+    <!-- Featured / Lead row -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+      {% set team_members = [
+        ('AM','Aryan Mishra','Lead Data Analyst','Data storytelling, Tableau dashboards, statistical modeling.','#2A6F97','#1E7C6E'),
+        ('SR','Suryansh ','Visualization Engineer','Tableau development, interactive dashboard design, UX research.','#1B5E7B','#0D8C80'),
+        ('SP','Shiv Prakash Tiwari','Data Scientist','Feature engineering, statistical analysis, insight generation.','#1B5E7B','#0D8C80'),
+      ] %}
+      {% for initials, name, role, skills, c1, c2 in team_members %}
+      <div class="team-card group" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 3 * 80 }}">
+        <!-- Avatar -->
+        <div class="team-avatar mx-auto mb-4" style="background:linear-gradient(135deg,{{ c1 }},{{ c2 }})">
+          {{ initials }}
+        </div>
+
+        <!-- Name & role -->
+        <h3 class="font-poppins font-bold text-white text-lg mb-1">{{ name }}</h3>
+        <div class="tech-badge text-xs mx-auto mb-3 inline-flex">{{ role }}</div>
+
+        <!-- Skills -->
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">{{ skills }}</p>
+
+        <!-- Social links -->
+        <div class="flex items-center justify-center gap-3">
+          <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10
+             hover:border-accent hover:bg-accent/10 hover:text-accent transition-all duration-300 text-gray-400"
+             aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin text-sm"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10
+             hover:border-accent hover:bg-accent/10 hover:text-accent transition-all duration-300 text-gray-400"
+             aria-label="GitHub">
+            <i class="fa-brands fa-github text-sm"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10
+             hover:border-accent hover:bg-accent/10 hover:text-accent transition-all duration-300 text-gray-400"
+             aria-label="Email">
+            <i class="fa fa-envelope text-sm"></i>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTRIBUTIONS SECTION -->
+<section class="py-20 bg-secondary-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-code-branch text-xs"></i>
+        Contributions
+      </div>
+      <h2 class="section-title">What We Each Built</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {% set contributions = [
+        ('Data & Analysis','Aryan Mishra,  Suryansh','fa-database',
+         ['Dataset sourcing and cleaning','Feature engineering','Statistical analysis','Insight derivation and validation']),
+        ('Tableau Visualizations','Suryansh, Aryan Mishra','fa-chart-pie',
+         ['4 interactive worksheets','Unified market dashboard','Story presentation','Visualization design & formatting']),
+        ('Web Development','Aryan Mishra, Shiv Prakash','fa-code',
+         ['Flask application architecture','Frontend HTML/CSS/JS','GSAP & AOS animations','Responsive design implementation']),
+        ('Project Management','Suryansh','fa-clipboard-list',
+         ['Timeline & milestone tracking','Documentation','Team coordination','Quality assurance & review']),
+      ] %}
+      {% for title, members, icon, items in contributions %}
+      <div class="glass-card p-7" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 2 * 100 }}">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30">
+            <i class="fa {{ icon }} text-accent text-sm"></i>
+          </div>
+          <div>
+            <h3 class="font-poppins font-semibold text-white">{{ title }}</h3>
+            <div class="text-accent text-xs mt-0.5">{{ members }}</div>
+          </div>
+        </div>
+        <ul class="space-y-2.5">
+          {% for item in items %}
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i class="fa fa-check-circle text-accent text-xs shrink-0"></i>
+            {{ item }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-dark-bg">
+  <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+    <h2 class="font-poppins font-bold text-white text-2xl mb-4">Want to Connect?</h2>
+    <p class="text-gray-400 mb-8">Reach out through our contact page — we'd love to hear your feedback on the project.</p>
+    <a href="/contact" class="btn-primary">
+      <i class="fa fa-envelope text-sm"></i>
+      Get in Touch
+    </a>
+  </div>
+</section>
+
+{% endblock %}

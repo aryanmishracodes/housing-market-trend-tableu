@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}Housing Features — HousingViz{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="hero-bg min-h-[45vh] flex items-end pb-12 pt-32 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="section-badge">
+      <i class="fa fa-list-check text-xs"></i>
+      Housing Features
+    </div>
+    <h1 class="section-title">Key Property Features</h1>
+    <p class="section-subtitle">Exploring the core housing attributes that drive sale prices and market trends.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="py-20 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-5 mb-16">
+      {% for icon, label, val in [('fa-database','Total Records','21,613'),('fa-sliders','Features','21 Columns'),('fa-calendar','Date Range','1900–2015')] %}
+      <div class="insight-card flex items-center gap-5" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+        <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 shrink-0">
+          <i class="fa {{ icon }} text-accent text-xl"></i>
+        </div>
+        <div>
+          <div class="font-poppins font-bold text-white text-xl">{{ val }}</div>
+          <div class="text-gray-400 text-sm">{{ label }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-sparkles text-xs"></i>
+        Feature Breakdown
+      </div>
+      <h2 class="section-title">7 Core Housing Features</h2>
+      <p class="section-subtitle mx-auto text-center">Each feature was carefully selected for its significance in influencing housing market value and buyer decisions.</p>
+    </div>
+
+    <!-- FEATURES GRID -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% set features = [
+        ('fa-calendar-days','House Age','Age of Property','#00F5D4',
+         'The age of a property plays a crucial role in its market value. Older homes may require more maintenance but often have character and historical value. Properties built between 1900–2015 show distinct pricing patterns.',
+         [('Oldest Built','1900'),('Newest Built','2015'),('Median Age','~40 years')]),
+        ('fa-screwdriver-wrench','Renovation Status','Renovation History','#2A6F97',
+         'Renovation history significantly impacts market appeal. Recently renovated properties tend to sell at premium prices. Our dataset tracks years since last renovation, enabling trend analysis.',
+         [('Never Renovated','~60%'),('Renovated','~40%'),('Recent Reno','<5 years')]),
+        ('fa-dollar-sign','Sale Price','Market Value','#00F5D4',
+         'The target variable of our analysis. Sale prices range widely based on location, features, and condition. Understanding price distributions reveals market segments and pricing drivers.',
+         [('Min Price','$75,000'),('Median','$450,000'),('Max Price','$7.7M')]),
+        ('fa-ruler-combined','Basement Area','Square Footage','#2A6F97',
+         'Basement square footage contributes substantially to usable living space. Properties with larger basements often command higher prices, particularly when finished and livable.',
+         [('No Basement','~15%'),('Avg Size','1,117 sqft'),('Max Size','4,820 sqft')]),
+        ('fa-bed','Bedrooms','Room Count','#00F5D4',
+         'Bedroom count is a primary search filter for buyers. The dataset shows clear relationships between bedroom count and price, with sweet spots at 3–4 bedrooms for the median market.',
+         [('Min Bedrooms','0'),('Most Common','3'),('Max Bedrooms','33')]),
+        ('fa-bath','Bathrooms','Facilities','#2A6F97',
+         'Bathroom count and type (full vs. half) significantly influence property value. Modern buyers prioritize en-suite and multiple bathroom configurations in higher-value properties.',
+         [('Min Baths','0'),('Most Common','2.5'),('Max Baths','8')]),
+        ('fa-layer-group','Floors','Property Levels','#00F5D4',
+         'Single vs multi-story properties serve different buyer segments. Floor count affects views, accessibility, and perceived living space, all contributing to final sale prices.',
+         [('Single Story','~49%'),('Two Story','~39%'),('Multi-story','~12%')]),
+      ] %}
+      {% for icon, title, subtitle, color, desc, stats in features %}
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 3 * 100 }}">
+        <div class="feature-icon">
+          <i class="fa {{ icon }} text-xl" style="color:{{ color }}"></i>
+        </div>
+        <div class="section-badge text-xs py-1 mb-3" style="color:{{ color }};border-color:{{ color }}33;background:{{ color }}11">
+          {{ subtitle }}
+        </div>
+        <h3 class="font-poppins font-bold text-white text-xl mb-3">{{ title }}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">{{ desc }}</p>
+
+        <!-- Mini stats -->
+        <div class="space-y-2 pt-4 border-t border-white/5">
+          {% for label, val in stats %}
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500 text-xs">{{ label }}</span>
+            <span class="font-medium text-xs" style="color:{{ color }}">{{ val }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE CORRELATIONS -->
+<section class="py-20 bg-secondary-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-badge mx-auto">
+        <i class="fa fa-link text-xs"></i>
+        Feature Relationships
+      </div>
+      <h2 class="section-title">How Features Interact</h2>
+      <p class="section-subtitle mx-auto text-center">Key correlations discovered between housing features and sale prices.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {% set correlations = [
+        ('Renovation → Sale Price','Renovated homes show ~25% higher average sale prices compared to unrenovated properties of similar age and size.','fa-arrow-trend-up','positive'),
+        ('Basement Size → Total Price','Each additional 100 sq ft of basement area correlates with ~$7,500 increase in average sale price.','fa-ruler','positive'),
+        ('House Age → Renovation Rate','Properties older than 30 years have a 2x higher renovation rate than newer builds.','fa-clock-rotate-left','neutral'),
+        ('Bedrooms + Bathrooms → Price','The combination of 4 bedrooms and 3 bathrooms represents the highest-value sweet spot in the dataset.','fa-maximize','positive'),
+      ] %}
+      {% for title, desc, icon, type in correlations %}
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 % 2 * 100 }}">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border
+            {% if type == 'positive' %}bg-accent/10 border-accent/30{% else %}bg-primary/10 border-primary/30{% endif %}">
+            <i class="fa {{ icon }} {% if type == 'positive' %}text-accent{% else %}text-primary{% endif %} text-sm"></i>
+          </div>
+          <div>
+            <h3 class="font-poppins font-semibold text-white mb-2">{{ title }}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-10">
+      <a href="/worksheets" class="btn-primary">
+        <i class="fa fa-chart-bar text-sm"></i>
+        See Visualizations
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
