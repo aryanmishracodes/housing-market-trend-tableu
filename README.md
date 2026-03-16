@@ -57,7 +57,7 @@ housing_viz/
 
 - **Full-screen loading animation** with city skyline build-up
 - **Glassmorphism navbar** with scroll effect
-- **Tableau Public embeds**: 4 worksheets + 1 dashboard + 1 story
+- **Tableau Public embeds**: 4 worksheets + 1 dashboard + 1 storyboard
 - **GSAP animations**: Hero text reveal, floating icons, page transitions
 - **AOS scroll animations**: Every section animates on scroll
 - **Particles.js**: Dynamic particle backgrounds on hero pages
