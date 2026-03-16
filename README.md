@@ -72,12 +72,12 @@ housing_viz/
 
 | Page | Visualization | URL |
 |------|--------------|-----|
-| Worksheets | Sheet 1 — Count of Transformed Housing Data | Assignment_17732394557250 |
-| Worksheets | Sheet 2 — Average Sale Prices | Sheet2_17732446227310 |
-| Worksheets | Sheet 3 — Area of House from Basement | Sheet3_17732446505130 |
-| Worksheets | Sheet 4 — Total Sales by Renovation Year | Sheet4_17732446791380 |
-| Dashboard | Housing Market Analysis Dashboard | DashBoard_17732448725210 |
-| Story | Housing Market Data Story | Story_17732454386960 |
+| Worksheets | Sheet 1 — Count of Transformed Housing Data | [Assignment_17732394557250](https://public.tableau.com/views/Assignment_17732394557250/Sheet1?:embed=y&:showVizHome=no) |
+| Worksheets | Sheet 2 — Average Sale Prices | [Sheet2_17732446227310](https://public.tableau.com/views/Sheet2_17732446227310/Sheet2?:embed=y&:showVizHome=no) |
+| Worksheets | Sheet 3 — Area of House from Basement | [Sheet3_17732446505130](https://public.tableau.com/views/Sheet3_17732446505130/Sheet3?:embed=y&:showVizHome=no) |
+| Worksheets | Sheet 4 — Total Sales by Renovation Year | [Sheet4_17732446791380](https://public.tableau.com/views/Sheet4_17732446791380/Sheet4?:embed=y&:showVizHome=no) |
+| Dashboard | Housing Market Analysis Dashboard | [DashBoard_17732448725210](https://public.tableau.com/views/DashBoard_17732448725210/Dashboard1?:embed=y&:showVizHome=no) |
+| Story | Housing Market Data Story | [Story_17732454386960](https://public.tableau.com/views/Story_17732454386960/Story1?:embed=y&:showVizHome=no) |
 
 ---
 
